@@ -1,8 +1,8 @@
 package com.himanshuanand.Dao;
 
 import com.himanshuanand.Entity.Student;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

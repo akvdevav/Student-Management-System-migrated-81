@@ -1,6 +1,7 @@
 package com.himanshuanand.Dao;
 
 import com.himanshuanand.Entity.Student;
+import com.himanshuanand.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
