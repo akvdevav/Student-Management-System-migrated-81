@@ -1,51 +1,49 @@
 package com.himanshuanand.Dao;
 
 import com.himanshuanand.Entity.Student;
+import com.himanshuanand.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by himanshuanand on 5/4/17.
  */
 @Repository
 @Qualifier("StudentDaoImpl")
+@Transactional
 public class StudentDaoImpl implements StudentDao {
 
-    private static Map<Integer,Student> students;
+    private final StudentRepository studentRepository;
 
-    static {
-        students = new HashMap<Integer, Student>(){
-            {
-                put(1,new Student(1,"Himanshu","Computer Science"));
-                put(2,new Student(2,"Alexis","Industrial Production"));
-                put(3,new Student(3,"Amanda","Computer Engineering"));
-            }
-        };
+    public StudentDaoImpl(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
-    public Collection<Student> getAllStudents(){
-        return this.students.values();
+    @Override
+    public Collection<Student> getAllStudents() {
+        return studentRepository.findAll();
     }
 
-    public Student getStudentById(int id){
-        return this.students.get(id);
+    @Override
+    public Student getStudentById(int id) {
+        return studentRepository.findById(id).orElse(null);
     }
 
+    @Override
     public void removeStudentById(int id) {
-        this.getAllStudents().remove(id);
+        studentRepository.deleteById(id);
     }
 
-    public void updateStudent(Student student){
-        Student s = students.get(student.getId());
-        s.setCourse(student.getCourse());
-        s.setName(student.getName());
+    @Override
+    public void updateStudent(Student student) {
+        studentRepository.save(student);
     }
 
+    @Override
     public void insertStudent(Student student) {
-        this.students.put(student.getId(),student);
+        studentRepository.save(student);
     }
 }

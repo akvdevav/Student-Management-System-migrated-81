@@ -1,46 +1,44 @@
 package com.himanshuanand.Dao;
 
 import com.himanshuanand.Entity.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * Created by himanshuanand on 5/7/17.
  */
 @Repository
-@Qualifier("mongoData")
+@Qualifier("jpaData")
 public class MongoStudentDaoImpl implements StudentDao {
+
+    @Autowired
+    private StudentRepository studentRepository;
+
     @Override
     public Collection<Student> getAllStudents() {
-        return new ArrayList<Student>() {
-            {
-                add(new Student(1,"Mario", "Information Technology"));
-            }
-        };
+        return studentRepository.findAll();
     }
 
     @Override
     public Student getStudentById(int id) {
-        return null;
+        return studentRepository.findById(id).orElse(null);
     }
 
     @Override
     public void removeStudentById(int id) {
-
+        studentRepository.deleteById(id);
     }
 
     @Override
     public void updateStudent(Student student) {
-
+        studentRepository.save(student);
     }
 
     @Override
     public void insertStudent(Student student) {
-
+        studentRepository.save(student);
     }
 }
