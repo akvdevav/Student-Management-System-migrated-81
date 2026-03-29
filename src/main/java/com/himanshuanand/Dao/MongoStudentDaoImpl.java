@@ -1,45 +1,52 @@
 package com.himanshuanand.Dao;
 
 import com.himanshuanand.Entity.Student;
-import com.himanshuanand.Repository.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by himanshuanand on 5/7/17.
  */
 @Repository
-@Qualifier("jpaData")
+@javax.annotation.Resource(name = "jpaData")
+@Transactional
 public class MongoStudentDaoImpl implements StudentDao {
 
-    @Autowired
-    private StudentRepository studentRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public Collection<Student> getAllStudents() {
-        return studentRepository.findAll();
+        String jpql = "SELECT s FROM Student s";
+        List<Student> students = entityManager.createQuery(jpql, Student.class).getResultList();
+        return students;
     }
 
     @Override
     public Student getStudentById(int id) {
-        return studentRepository.findById(id).orElse(null);
+        return entityManager.find(Student.class, id);
     }
 
     @Override
     public void removeStudentById(int id) {
-        studentRepository.deleteById(id);
+        Student student = entityManager.find(Student.class, id);
+        if (student != null) {
+            entityManager.remove(student);
+        }
     }
 
     @Override
     public void updateStudent(Student student) {
-        studentRepository.save(student);
+        entityManager.merge(student);
     }
 
     @Override
     public void insertStudent(Student student) {
-        studentRepository.save(student);
+        entityManager.persist(student);
     }
 }
