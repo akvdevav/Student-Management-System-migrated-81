@@ -20,13 +20,13 @@
     </properties>
 
     <dependencies>
-        <!-- Web -->
+        <!-- Spring Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- JPA / PostgreSQL -->
+        <!-- Spring Data JPA + PostgreSQL -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -37,7 +37,7 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- RabbitMQ -->
+        <!-- RabbitMQ (Spring AMQP) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
@@ -49,24 +49,11 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
-        <!-- Legacy javax.persistence support (required by existing entity) -->
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>javax.persistence-api</artifactId>
-            <version>2.2</version>
-        </dependency>
-
         <!-- HikariCP (optional – Spring Boot includes it by default) -->
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>5.0.1</version>
-        </dependency>
-
-        <!-- Optional JDBC utilities (kept for any direct JDBC usage) -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
         </dependency>
     </dependencies>
 
@@ -78,5 +65,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

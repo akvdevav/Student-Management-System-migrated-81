@@ -13,7 +13,6 @@ import java.util.List;
  * Created by himanshuanand on 5/7/17.
  */
 @Repository
-@javax.annotation.Resource(name = "jpaData")
 @Transactional
 public class MongoStudentDaoImpl implements StudentDao {
 
