@@ -10,6 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Main {
 
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+        SpringApplication application = new SpringApplication(Main.class);
+        // Activate the development profile to use the in‑memory H2 database,
+        // avoiding connection attempts to a non‑existent PostgreSQL database.
+        application.setAdditionalProfiles("dev");
+        application.run(args);
     }
 }
