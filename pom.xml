@@ -37,6 +37,12 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- JDBC (ensures datasource detection) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
         <!-- H2 Database (used for in‑memory dev profile) -->
         <dependency>
             <groupId>com.h2database</groupId>
