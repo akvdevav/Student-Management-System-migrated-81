@@ -37,6 +37,13 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- H2 Database (used for in‑memory dev profile) -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
         <!-- RabbitMQ (Spring AMQP) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
