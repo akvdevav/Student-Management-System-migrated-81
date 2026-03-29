@@ -37,13 +37,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- MySQL Connector (required for legacy JDBC URL) -->
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
         <!-- RabbitMQ (Spring AMQP) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -56,11 +49,11 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
-        <!-- HikariCP (optional – Spring Boot includes it by default) -->
+        <!-- Test support -->
         <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>5.0.1</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
